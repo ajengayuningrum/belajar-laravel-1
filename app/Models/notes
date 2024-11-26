@@ -1,0 +1,10 @@
+MVC
+model : database
+view : html css dan javascript
+controller : menghubungkan antara model dan view
+artisan : perintah untuk membuat fitur-fitur yang ada di laravel
+composer : install package yang ada di php
+
+Migration
+Seeder
+Model
