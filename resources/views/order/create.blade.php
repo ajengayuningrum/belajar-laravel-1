@@ -10,26 +10,43 @@
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="">No Transaksi</label>
-                            <input type="text" name="order_code" class="form-control" value="{{ $order_code ?? '' }}" readonly>
+                            <input type="text" name="order_code" class="form-control" value="{{ $order_code ?? '' }}"
+                                readonly>
                         </div>
                         <div class="mb-3">
                             <label for="">Tanggal Laundry</label>
                             <input type="date" name="order_date" class="form-control" value="{{ $order_date ?? '' }}">
                         </div>
+                        <div class="mb-3">
+                            <label for="">Paket</label>
+                            <select name="" id="id_paket" class="form-control">
+                                <option value="">--Pilih Paket--</option>
+                                @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->service_name }}</option>
+                                @endforeach
+                            </select>
+                            {{-- name buat masukin ke database, kalo id buat ngambil selectornya --}}
+                        </div>
+                        <input type="hidden" id="price">
                     </div>
                     <div class="col-sm-6">
                         <div class="mb-3">
                             <label for="">Nama Pelanggan</label>
                             <select name="id_customer" id="" class="form-control">
                                 <option value="">--Pilih Pelanggan--</option>
-                                @foreach ($customers as $cus )
-                                <option value="{{$cus->id}}">{{$cus->customer_name }}</option>
+                                @foreach ($customers as $cus)
+                                    <option value="{{ $cus->id }}">{{ $cus->customer_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="">Tanggal Pickup</label>
-                            <input type="date" name="order_end_date" class="form-control" value="{{ $order_end_date ?? '' }}">
+                            <input type="date" name="order_end_date" class="form-control"
+                                value="{{ $order_end_date ?? '' }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Qty (Kg)</label>
+                            <input type="number" class="qty form-control" placeholder="Masukkan jumlah">
                         </div>
                     </div>
                 </div>
@@ -41,19 +58,22 @@
                         <thead>
                             <tr>
                                 <th>Nama Paket</th>
-                                <th>Qty</th>
                                 <th>Harga</th>
+                                <th>Qty</th>
                                 <th>Subtotal</th>
                             </tr>
                         </thead>
                         <tbody class="tbody-parent">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">Total</td>
+                                <td>
+                                    <input type="number" name="total_price" class="total-harga form-control" readonly>
+                                    <input type="hidden" name="order_status" value="0">
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
 
@@ -64,4 +84,3 @@
         </div>
     </div>
 @endsection
-
